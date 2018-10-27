@@ -1,0 +1,8 @@
+{
+  "name": "@radoslaw-medryk/mkmock",
+  "version": "0.1.0",
+  "main": "index.js",
+  "bin": {
+    "mkmock": "./mkmock-cli.js"
+  }
+}
