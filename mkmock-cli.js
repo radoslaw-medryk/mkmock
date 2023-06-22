@@ -23,12 +23,12 @@ const error = (err, req, res) => {
     console.log(err);
     res.statusCode = 500;
     res.end();
-}
+};
 
 const notFound = (req, res) => {
     res.statusCode = 404;
     res.end();
-}
+};
 
 const corsReply = (req, res) => {
     res.writeHead(200, {
@@ -37,11 +37,12 @@ const corsReply = (req, res) => {
         "Access-Control-Allow-Headers": "*",
     });
     res.end();
-}
+};
 
 const handle = (req, res) => {
     // TODO [RM]: handle Windows
     let url = path.posix.normalize(req.url);
+    url = url.split("?")[0];
     const method = req.method.toLowerCase();
 
     // TODO [RM]: more extensible configuration?
@@ -64,7 +65,7 @@ const handle = (req, res) => {
             .map(q => path.posix.join(url, q))
             .map(q => path.posix.parse(q))
             .filter(q => q.name.startsWith(method));
-        
+
         if (matches.length > 1) {
             error("Found more than single match.", req, res);
             return;
